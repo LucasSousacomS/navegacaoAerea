@@ -18,9 +18,13 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_checkBox_stateChanged(int arg1);
+    //void on_checkBox_stateChanged(int arg1);
 
     void on_pushButton_clicked();
+
+    void on_chk_alt_stateChanged(int arg1);
+
+    void on_chk_vor_stateChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;
