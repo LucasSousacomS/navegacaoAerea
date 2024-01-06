@@ -141,3 +141,17 @@ void MainWindow::on_actionSalvar_como_triggered()
     }
 }
 
+
+void MainWindow::on_actionAbrir_triggered()
+{
+    QString local = "E:/Diretorio QT/";
+    QFile file (local+"arquivo.json");
+    QByteArray jsonData;
+    if(file.open(QIODevice::ReadOnly|QIODevice::Text)){
+        jsonData = file.readAll();
+        file.close();
+    }else{
+        qDebug()<<"Não abriu o arquivo";
+    }
+}
+
