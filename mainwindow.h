@@ -28,6 +28,8 @@ private slots:
 
     void on_actionSalvar_como_triggered();
 
+    void on_actionAbrir_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
