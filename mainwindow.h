@@ -30,6 +30,8 @@ private slots:
 
     void on_actionAbrir_triggered();
 
+    void on_btn_remover_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
