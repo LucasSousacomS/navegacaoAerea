@@ -156,11 +156,11 @@ void MainWindow::on_actionAbrir_triggered()
 
 }
 
-
 void MainWindow::on_btn_remover_clicked()
 {
     int linha = ui->tb_pernas->currentRow();
     ui->tb_pernas->removeRow(linha);
     cont--;
 }
+
 
