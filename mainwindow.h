@@ -26,6 +26,8 @@ private slots:
 
     void on_chk_vor_stateChanged(int arg1);
 
+    void on_actionSalvar_como_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -3,6 +3,11 @@
 #include <QDebug>
 #include <QTableWidgetItem>
 #include <QStringList>
+#include <QFile>
+#include <QFileDialog>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QByteArray>
 
 int cont = 0;
 bool vor = 0;
@@ -43,7 +48,7 @@ void MainWindow::on_pushButton_clicked()
         alt = "";
     }
     qDebug() << desc;
-    qDebug() << alt;    
+    qDebug() << alt;
     ui->tb_pernas->setRowCount(cont+1);
     ui->tb_pernas->setCellWidget(cont, 0, new QCheckBox("", this));
     ui->tb_pernas->setItem(cont, 1, new QTableWidgetItem(desc));
@@ -108,6 +113,31 @@ void MainWindow::on_chk_vor_stateChanged(int arg1)
         vor = 1;
         break;
     }
+    }
+}
+
+
+void MainWindow::on_actionSalvar_como_triggered()
+{
+    QJsonObject objetoJson;
+    qDebug() <<"Criou o objeto json";
+    QString local = "E:/Diretorio QT/";
+    for(int i = 0; i<cont;i++){
+        qDebug()<< "Cont no for = " <<cont;
+        objetoJson["Descricao"+QString::number(i+1)] = ui->tb_pernas->item(i,1)->text();
+        objetoJson["Altitude"+QString::number(i+1)] = ui->tb_pernas->item(i,2)->text();
+        objetoJson["Rumo"+QString::number(i+1)] = ui->tb_pernas->item(i,3)->text();
+        objetoJson["Fixo"+QString::number(i+1)] = ui->tb_pernas->item(i,4)->text();
+        objetoJson["Frequencia"+QString::number(i+1)] = ui->tb_pernas->item(i,5)->text();
+    }
+    QJsonDocument docJson(objetoJson);
+    QByteArray jsonData = docJson.toJson();
+    QFile file (local+"arquivo.json");
+    if(file.open(QIODevice::WriteOnly|QIODevice::Text)){
+        file.write(jsonData);
+        file.close();
+    }else{
+        qDebug("Não deu pra abrir o documento");
     }
 }
 
